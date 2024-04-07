@@ -6,7 +6,7 @@
 /*   By: mwiecek <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:31:44 by mwiecek           #+#    #+#             */
-/*   Updated: 2024/03/26 13:31:48 by mwiecek          ###   ########.fr       */
+/*   Updated: 2024/04/07 21:02:39 by mwiecek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,7 +183,7 @@ static int	what_char(char c, va_list arg)
 	return (len);
 }
 
-int	ft_printf(char *s, ...)
+int	ft_printf(const char *s, ...)
 {
 	va_list	arg;
 	int	len;
@@ -213,12 +213,9 @@ int	main(void)
 {
 	void	*ptr;
 
-	ft_printf("%c\n%p\n%x\n", 'a', ptr, 9840938);
+	ptr = NULL;
+	ft_printf(" %c ", '0');
 	write(1, "\n", 1);
-	printf("%c\n%p\n%x\n", 'a', ptr, 9840938);
-
-	ft_printf("hdjkhjsdk");
-        write(1, "\n", 1);
-        printf("hdjkhjsdk");
+	printf(" %c ", '0');
 	return (0);
 }
