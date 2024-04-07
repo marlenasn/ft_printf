@@ -19,7 +19,7 @@
 static int    ft_putchar(char c);
 static int    ft_putnbr(int n);
 static int    ft_putstr(char *s);
-static int    ft_print_ptr(unsigned long ptr, int first);
+static int    ft_print_ptr(unsigned long ptr);
 static int    ft_put_X(unsigned int n);
 static int    ft_put_x(unsigned int n);
 static int    ft_put_un_nbr(unsigned int n);

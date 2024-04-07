@@ -13,6 +13,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <limits.h>
 
 static int    ft_putchar(char c)
 {
@@ -24,28 +25,32 @@ static int    ft_putnbr(int n)
 {
         char    a;
         int	len;
-
-	len = 1;
+	
+	len = 0;
         if (n == -2147483648)
         {
-                write (1, "-", 1);
-                write (1, "2", 1);
+                write (1, "-2", 2);
                 n = 147483648;
+		len += 2; // - and 2
         }
         if (n < 0)
         {
                 write (1, "-", 1);
                 n = -1 * n;
+		len++;
         }
+
         if (n >= 10)
         {
                 len = len + ft_putnbr(n / 10);
                 ft_putnbr(n % 10);
+		len++;
         }
         else
         {
                 a = n + '0';
                 write (1, &a, 1);
+		len++;
         }
         return (len);
 }
@@ -64,33 +69,50 @@ static int    ft_putstr(char *s)
                         s++;
                 }
         }
+	else
+	{
+		write(1, "(null)", 6);
+		len = 6;
+	}
 	return (len);
 }
 
-static int    ft_print_ptr(unsigned long ptr, int first)
+static int	ft_print_ptr_chars(unsigned long n)
 {
         char    	a;
-	unsigned long	n;
-	int		len;
+	int	len;
+	len = 1;
 
-	n = (unsigned long)ptr;
-	len = 3;
-	if(first)
-		write(1, "0x", 2);
         if (n >= 16)
         {
-                len = len + ft_print_ptr(n / 16, 0);
-                ft_print_ptr(n % 16, 0);
+                len = len + ft_print_ptr_chars(n / 16);
+                ft_print_ptr_chars(n % 16);
         }
         else
         {
                 if (n < 10)
                         a = n + '0';
                 else
-                        a = n + 55;
+                        a = (n - 10) + 'a';
                 write (1, &a, 1);
         }
         return (len);
+}
+
+static int    ft_print_ptr(unsigned long ptr)
+{
+	unsigned long	n;
+
+	if (!ptr)
+	{
+		write(1, "(nil)", 5);
+		return (5);
+	}
+
+	n = (unsigned long)ptr;
+	write(1, "0x", 2);
+	// 2 + to include "Ox" characters for the first execution
+	return (2 + ft_print_ptr_chars(n)); 
 }
 
 static int    ft_put_X(unsigned int n)
@@ -131,7 +153,7 @@ static int    ft_put_x(unsigned int n)
                 if (n < 10)
                         a = n + '0';
                 else
-                        a = n + 87;
+                        a = (n - 10) + 'a';
                 write (1, &a, 1);
         }
         return (len);
@@ -170,7 +192,7 @@ static int	what_char(char c, va_list arg)
 	else if (c == 'u')
 		len = len + ft_put_un_nbr(va_arg(arg, unsigned int));
 	else if (c == 'p')
-		len = len + ft_print_ptr((unsigned long)va_arg(arg, void *), 1);
+		len = len + ft_print_ptr((unsigned long)va_arg(arg, void *));
 	else if (c == '%')
 	{
 		write(1, "%", 1);
@@ -195,7 +217,7 @@ int	ft_printf(const char *s, ...)
 		if (*s == '%')
 		{
 			s++;
-			len = what_char(*s, arg);
+			len += what_char(*s, arg);
 			s++;
 		}
 		else
@@ -209,13 +231,32 @@ int	ft_printf(const char *s, ...)
 	return (len);
 }
 
+/*
 int	main(void)
 {
-	void	*ptr;
-
-	ptr = NULL;
-	ft_printf(" %c ", '0');
+	int ft_res = ft_printf(" %p %p ", 0, 0);
+	printf("%d\n", ft_res);
 	write(1, "\n", 1);
-	printf(" %c ", '0');
+	int print_res = printf(" %p %p ", 0, 0);
+	printf("%d\n", print_res);
+	
+	int ft_res2 = ft_printf(" %p ", 16);
+	printf("%d\n", ft_res2);
+	write(1, "\n", 1);
+	int print_res2 = printf(" %p ", 16);
+	printf("%d\n", print_res2);
 	return (0);
 }
+*/
+
+/*
+int main(void)
+{
+	int ft_res = ft_printf(" %d ", INT_MIN);
+	printf("%d\n", ft_res);
+	write(1, "\n", 1);
+	int print_res = printf(" %d ", INT_MIN);
+	printf("%d\n", print_res);
+
+}
+*/
