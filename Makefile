@@ -1,10 +1,10 @@
 NAME = libftprintf.a
 SOURCES = \
-	ft_printf.c
+	ft_printf.c ft_putnbr.c ft_print_ptr.c ft_put_cap_x.c ft_putchar.c ft_putstr.c ft_put_un_nbr.c ft_put_x.c 
 
 OBJECTS = $(SOURCES:.c=.o)
 
-CC = clang
+CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 
 all: $(NAME)
