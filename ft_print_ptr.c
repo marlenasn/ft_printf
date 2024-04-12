@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_print_ptr.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mwiecek <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/12 12:57:27 by mwiecek           #+#    #+#             */
+/*   Updated: 2024/04/12 12:59:08 by mwiecek          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 static int	ft_print_ptr_chars(unsigned long n)
 {
 	char	a;
-	int	len;
-	
+	int		len;
+
 	len = 1;
 	if (n >= 16)
 	{
@@ -24,8 +36,8 @@ static int	ft_print_ptr_chars(unsigned long n)
 
 int	ft_print_ptr(unsigned long ptr)
 {
-	unsigned long   n;
-	
+	unsigned long	n;
+
 	if (!ptr)
 	{
 		write(1, "(nil)", 5);
@@ -35,4 +47,3 @@ int	ft_print_ptr(unsigned long ptr)
 	write(1, "0x", 2);
 	return (2 + ft_print_ptr_chars(n));
 }
-

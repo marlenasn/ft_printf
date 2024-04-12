@@ -1,11 +1,22 @@
-#include "ft_printf.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mwiecek <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/12 13:02:05 by mwiecek           #+#    #+#             */
+/*   Updated: 2024/04/12 13:02:07 by mwiecek          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "ft_printf.h"
 
 int	ft_putnbr_helper(int n)
 {
 	char	a;
-	int	len;
-	
+	int		len;
+
 	len = 0;
 	if (n >= 10)
 	{
@@ -25,7 +36,7 @@ int	ft_putnbr_helper(int n)
 int	ft_putnbr(int n)
 {
 	int	len;
-	
+
 	len = 0;
 	if (n == -2147483648)
 	{
