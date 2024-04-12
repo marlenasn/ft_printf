@@ -6,7 +6,7 @@
 /*   By: mwiecek <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/22 15:31:44 by mwiecek           #+#    #+#             */
-/*   Updated: 2024/04/08 10:58:28 by mwiecek          ###   ########.fr       */
+/*   Updated: 2024/04/12 14:41:36 by mwiecek          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,30 +64,36 @@ int	ft_printf(const char *s, ...)
 	va_end(arg);
 	return (len);
 }
-/*
+
 int	main(void)
 {
-	int ft_res = ft_printf(" %d %d ", 0, 0);
-	printf("%d\n", ft_res);
-	write(1, "\n", 1);
-	int print_res = printf(" %d %d ", 0, 0);
-	printf("%d\n", print_res);
-	int ft_res2 = ft_printf(" %d ", 16);
-	printf("%d\n", ft_res2);
-	write(1, "\n", 1);
-	int print_res2 = printf(" %d ", 16);
-	printf("%d\n", print_res2);
+	printf("%s\n", "string");
+	ft_printf("%s\n", "string");
+
+	printf("%p\n", "string");
+        ft_printf("%p\n", "string");
+
+	printf("%d\n", 12345);
+        ft_printf("%d\n", 12345);
+	
+	printf("%%\n");
+        ft_printf("%%\n");
+	
+	printf("%s\n %s\n %s\n", "string1", "string2", "string3");
+        ft_printf("%s\n %s\n %s\n", "string1", "string2", "string3");
+
+	printf("%i\n", 123456);
+        ft_printf("%i\n", 123456);
+
+	printf("%x\n", 1000000);
+        ft_printf("%x\n", 1000000);
+
+	printf("%X\n", 1000000);
+        ft_printf("%X\n", 1000000);
+
+	printf(" %s \n", "string");
+        ft_printf(" %s \n", "string");
+
 	return (0);
 }
-*/
-/*
-int main(void)
-{
-	int ft_res = ft_printf(" %d ", INT_MIN);
-	printf("%d\n", ft_res);
-	write(1, "\n", 1);
-	int print_res = printf(" %d ", INT_MIN);
-	printf("%d\n", print_res);
 
-}
-*/
